@@ -404,6 +404,10 @@ public:
     bool LeoSeed;
     bool GeometrySeed;
 
+	// Lethal League training params
+	bool TrainingHitOnly;
+	double TargetAccuracy;
+
     /////////////////////////////////////
     // Constructors
     /////////////////////////////////////

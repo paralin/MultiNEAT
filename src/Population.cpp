@@ -542,13 +542,36 @@ void Population::Epoch()
     }
 
 
+	{
+		// calculate average
+		double avgFitness = 0;
+		int count = 0;
+		for (auto begin = m_Species.begin(); begin != m_Species.end(); ++begin)
+		{
+			auto fit = begin->GetBestFitness();
+			if (fit > 50)
+			{
+				avgFitness += fit;
+				count++;
+			}
+		}
 
-
-
-
-
-
-
+		avgFitness = std::max((double)0, avgFitness / (double) count);
+		int i = 0;
+		for (auto begin = m_Species.begin(); begin != m_Species.end(); )
+		{
+			if ((begin->GetBestFitness() < avgFitness) && (i > (m_Parameters.MaxSpecies)))
+			{
+				std::cout << std::dec << " - f: " << begin->GetBestFitness() << std::endl;
+				begin = m_Species.erase(begin);
+			}
+			else
+			{
+				++begin;
+			}
+			i++;
+		}
+	}
 
 
     // A special case for global stagnation.

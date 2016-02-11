@@ -829,6 +829,20 @@ int Parameters::Load(std::ifstream& a_DataFile)
         {
             a_DataFile >> EliteFraction;
         }
+
+		if (s == "TrainingHitOnly")
+		{
+            a_DataFile >> tf;
+           if (tf == "true" || tf == "1" || tf == "1.0")
+                TrainingHitOnly = true;
+            else
+                TrainingHitOnly = false;
+		}
+
+        if (s == "TargetAccuracy")
+        {
+            a_DataFile >> TargetAccuracy;
+        }
     }
 
     return 0;
@@ -973,6 +987,9 @@ void Parameters::Save(FILE* a_fstream)
     fprintf(a_fstream, "LeoSeed %s\n", LeoSeed==true?"true":"false");
     fprintf(a_fstream, "GeometrySeed %s\n", GeometrySeed==true?"true":"false");
     fprintf(a_fstream, "Elitism %3.20f\n", EliteFraction);
+
+	fprintf(a_fstream, "TrainingHitOnly %s\n", TrainingHitOnly ? "true" : false);
+	fprintf(a_fstream, "TargetAccuracy %3.20f\n", TargetAccuracy);
 
     fprintf(a_fstream, "NEAT_ParametersEnd\n");
 }
