@@ -456,15 +456,6 @@ void Population::UpdateSpecies()
 // the epoch method - the heart of the GA
 void Population::Epoch()
 {   
-    // So, all genomes are evaluated..
-    for(unsigned int i=0; i<m_Species.size(); i++)
-    {
-        for(unsigned int j=0; j<m_Species[i].m_Individuals.size(); j++)
-        {
-            m_Species[i].m_Individuals[j].SetEvaluated();
-        }
-    }
-
     // Sort each species's members by fitness and the species by fitness
     Sort();
 
